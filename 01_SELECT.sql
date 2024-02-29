@@ -11,7 +11,7 @@ SELECT * FROM EMPLOYEE;
 
 -- [작성법]
 -- SELECT 컬럼명 FROM 테이블명;
---> 어떤 테이블의 특정 컬러을 조회하겠다.
+--> 어떤 테이블의 특정 컬럼을 조회하겠다.
 
 SELECT * FROM EMPLOYEE;
 -- '*' : ALL, 모든, 모두..
@@ -231,13 +231,10 @@ WHERE EMAIL LIKE '____%';
 --													아무 특수기호나 첨부해서 구분하게함
 
 
-
 SELECT EMP_NAME, EMAIL
 FROM EMPLOYEE
 WHERE EMAIL LIKE '___#_%' ESCAPE '#';
 --> # 뒤에 작성된 _는 일반 문자로 탈출시킨다..
-
-
 
 
 -- 연습문제
@@ -253,7 +250,6 @@ WHERE EMAIL LIKE '____$_%' ESCAPE '$'
 AND (DEPT_CODE = 'D9' OR DEPT_CODE = 'D6')
 AND HIRE_DATE BETWEEN '1990-01-01' AND '2000-12-31'
 AND SALARY >= 2700000;
-
 
 
 -- 연산자 우선순위
@@ -272,14 +268,128 @@ AND SALARY >= 2700000;
  * */
 
 
+----------------------------------------------------------------------------------------
+
+/* IN 연산자
+ * 
+ * - 비교하려는 값과 목로겡 작성된 값 중
+ * 일치하는 것이 있으면 조회하는 연산자
+ * 
+ * [작성법]
+ * 
+ * WHERE 컬럼명 IN(값1, 값2, 값3...)
+ * 
+ * WHERE 컬럼명 = 값1 
+ * OR		 컬럴명 = 값2
+ * OR		 컬럼명 = 값3
+ * ...
+ * */
+
+-- EMPLOYEE 테이블에서
+-- 부서코드가 D1, D6, D9인 사원의
+-- 사번, 이름, 부서코드 조회
+
+SELECT EMP_ID, EMP_NAME, DEPT_CODE
+FROM EMPLOYEE 
+WHERE DEPT_CODE IN('D1', 'D6', 'D9'); -- 9 명
+
+
+/*
+ * WEHERE DEPT_CODE = 'D1'
+ * OR DEPT_CODE = 'D6'
+ * OR DEPT_CODE = 'D9';
+ * 
+ 
+ * 
+ * */
+
+/* NOT IN */
+
+
+-- EMPLOYEE 테이블에서
+-- 부서코드가 D1, D6, D9인 사원의
+-- 사번, 이름, 부서코드 조회
+
+SELECT EMP_ID, EMP_NAME, DEPT_CODE
+FROM EMPLOYEE 
+WHERE DEPT_CODE NOT IN('D1', 'D6', 'D9')
+OR DEPT_CODE IS NULL; -- 부서 코드가 없는 2명 (NULL 처리 연산자)
+
+----------------------------------------------------------------
+
+/*
+ * NULL 처리 연산자
+ * 
+ * JAVA 에서 NULL : 참조하는 객체가 없음을 의미하는 값
+ * DB 에서 NULL : 컬럼에 값이 없음을 의미하는 값
+ * 
+ * 1) IS NULL : NULL 인 경우 조회
+ * 2) IS NOT NULL : NULL 이 아닌 경우
+ * 
+ * 
+ * */
+
+-- EMPLOYEE 테이블에서 보너스가 있는 사원의 이름, 보너스 조회
+SELECT EMP_NAME, BONUS
+FROM EMPLOYEE
+WHERE BONUS IS NOT NULL;
+
+-- EMPLOYEE 테이블에서 보너스가 없는 사원의 이름, 보너스 조회
+SELECT EMP_NAME, BONUS
+FROM EMPLOYEE
+WHERE BONUS IS NULL; -- 14행
+
+------------------------------------------------------
+
+/* ORDER BY 절
+ * 
+ * - SELECT 문의 조회 결과(RESULT SET)를 정렬할 때 사용하는 구문
+ * 
+ * ** SELECT문 해석 시 가장 마지막에 해석된다!!
+ * 
+ * 3. SELECT절
+ * 1. FROM절
+ * 2. WHERE절
+ * 4. ORDER BY 컬럼명 || 별칭 || 컬럼 순서  [ASC : DESC] [NULLS FIRST | LAST]
+ *                               (오름차순:기본값) (내림차순)
+ * 															 
+ *
+ * */
+
+
+-- EMPLOYEE 테이블에서 급여 오름차순으로
+-- 사번, 이름, 급여 조회
+SELECT EMP_ID, EMP_NAME, SALARY
+FROM EMPLOYEE
+ORDER BY SALARY; -- ASC가 기본값
+
+-- EMPLOYEE 테이블에서
+-- 급여 200만 이상의 사원의
+-- 사번, 이름, 급여 조회
+-- 단, 급여 내림  차순으로 조회
+SELECT EMP_ID, EMP_NAME, SALARY
+FROM EMPLOYEE
+WHERE SALARY >= 2000000
+ORDER BY 3 DESC;
+
+-- 입사일 순서대로 이름, 입사일 조회 (별칭 사용)
+SELECT EMP_NAME 이름, HIRE_DATE 입사일
+FROM EMPLOYEE
+ORDER BY 입사일;
+
+
+/* 정렬 중첩 : 대분류 정렬 후 소분류 정렬 */
+
+-- 부서코드 오름차순 정렬 후 급여 내림차순 정렬
+SELECT EMP_NAME, DEPT_CODE, SALARY
+FROM EMPLOYEE
+ORDER BY DEPT_CODE, SALARY DESC;
 
 
 
 
 
 
-
-
-
+GROUP BY
 
 
