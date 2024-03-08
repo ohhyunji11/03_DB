@@ -139,5 +139,3 @@ SELECT * FROM DEPARTMENT2; -- 개발 4팀까지 롤백
 
 
 
-
-
