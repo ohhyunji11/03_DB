@@ -13,7 +13,7 @@
 
 -- 1) 노옹철의 부서코드 조회 (서브쿼리)
 SELECT DEPT_CODE
-FROM EMPLOYEE
+FROM EMPLOYEE     
 WHERE EMP_NAME = '노옹철'; -- 'D9'
 
 

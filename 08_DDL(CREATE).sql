@@ -35,7 +35,7 @@ SELECT * FROM USER_TABLES;
 
 -- 테이블이나 인덱스 뷰, 다양한 데이터베이스 객체를 생성하는 구문
 -- 테이블로 생성된 객체는 DROP 구문을 통해 제거 할 수 있음
--- DROP TABLE MEMBER"
+-- DROP TABLE MEMBER;
 
 /*
  * -- 표현식
@@ -72,7 +72,7 @@ SELECT * FROM USER_TABLES;
 
 -- MEMBER 테이블 생성
 CREATE TABLE "MEMBER" (
-       MEMBER_ID VARCHAR2(20),
+       MEMBER_ID VARCHER2(20),
        MEMBER_PWD VARCHAR2(20),
        MEMBER_NAME VARCHAR2(30),
        MEMBER_SSN CHAR(14), --    991213-1234567
@@ -727,7 +727,7 @@ SELECT * FROM USER_TEST;
 SELECT * FROM USER_COL_COMMENTS;
 WHERE TABLE_NAME = 'USER_TEST';
 
--- 테이블 안나옴
+
 ------------------------------------------------------------------------------------------
 
 
@@ -778,7 +778,6 @@ WHERE C1.TABLE_NAME = 'LOCATION';
 -- * 수업시간에 활용하던 테이블에는 FK 제약조건 없는 상태이므로 추가!!!
 
 
-
 -- EMPLOYEE 테이블의 DEPT_CODE에 외래키 제약조건 추가
 -- 참조테이블은 DEPARTMENT, 참조 컬럼은 DEPARTMENT의 기본키
 ALTER TABLE EMPLOYEE ADD CONSTRAINT EMP_DEPT_CODE
@@ -786,7 +785,7 @@ FOREIGN KEY(DEPT_CODE) REFERENCES DEPARTMENT ON DELETE SET NULL;
                                /* PK 컬럼 참조(DEPT_ID) */
 
 
--- EMPLOYEE테 테이블의 JOB_CODE 외래키 제약조건 추가
+-- EMPLOYEE 테이블의 JOB_CODE 외래키 제약조건 추가
 -- 참조 테이블은 JOB, 참조 컬럼은 JOB의 기본키
 ALTER TABLE EMPLOYEE ADD CONSTRAINT EMP_JOB_CODE
 FOREIGN KEY(JOB_CODE) REFERENCES JOB ON DELETE SET NULL;
