@@ -158,6 +158,7 @@ REVOKE SELECT ON EMPLOYEE FROM ohj_sample;
 
 -- 5. (sample) 권한 회수 확인
 SELECT * FROM kh_ohj.EMPLOYEE;
+
 -- ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
 
 
