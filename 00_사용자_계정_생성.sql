@@ -9,14 +9,16 @@
 ALTER SESSION SET "_ORACLE_SCRIPT" = TRUE;
 -- CTRL + ENTER : 선택한 SQL 수행
 
+--DROP USER board_project;
 
 -- 사용자 계정 생성
-CREATE USER exam_ohj IDENTIFIED BY exam_ohj;
+CREATE USER board_project IDENTIFIED BY board1234;
 
 
 -- 사용자 계정에 권한 부여
-GRANT RESOURCE, CONNECT TO exam_ohj;
+GRANT RESOURCE, CONNECT TO board_project;
 
 -- 객체가 생성될 수 있는 공간 할당량 지정
-ALTER USER exam_ohj DEFAULT TABLESPACE SYSTEM QUOTA UNLIMITED ON SYSTEM;
+ALTER USER board_project DEFAULT TABLESPACE SYSTEM QUOTA UNLIMITED ON SYSTEM;
+
 
